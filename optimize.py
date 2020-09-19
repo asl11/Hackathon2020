@@ -119,4 +119,4 @@ def optimize_assignments(E, S, D, c):
     return [roomids, meeting_score]
 
 #print(validate_inputs(E, S, D))
-#print(optimize_assignments(E, S, D, c))
+print(optimize_assignments(E, S, D, c))
