@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="e3dbcdfb-bb3d-454e-bbda-2f0229b68965" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/run_optimization.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Hackathon2020.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hackathon2020.iml" afterDir="false" />
@@ -9,11 +28,15 @@
       <change beforePath="$PROJECT_DIR$/fronten/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/fronten/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/optimize.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimize.py" afterDir="false" />
     </list>
+=======
+    <list default="true" id="439f340b-4e09-4ab9-b057-da0f723acfd1" name="Default Changelist" comment="Added DataInput directory" />
+>>>>>>> e20557e43568a4641a7fafc10c7685804f335bdb
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
@@ -38,10 +61,19 @@
         </entry>
       </file>
     </leaf>
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+>>>>>>> e20557e43568a4641a7fafc10c7685804f335bdb
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -102,23 +134,28 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+=======
+  <component name="ProjectId" id="1hkYuvXPIvaifm8n6CuxZAZtDJo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+>>>>>>> e20557e43568a4641a7fafc10c7685804f335bdb
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Anthony Bagamian\PycharmProjects\Hackathon2020" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
+<<<<<<< HEAD
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -145,4 +182,38 @@
       <window_info anchor="right" id="R Packages" order="4" />
     </layout>
   </component>
+=======
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="439f340b-4e09-4ab9-b057-da0f723acfd1" name="Default Changelist" comment="" />
+      <created>1600484367246</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600484367246</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added DataInput directory">
+      <created>1600557486550</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600557486550</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added DataInput directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added DataInput directory" />
+  </component>
+>>>>>>> e20557e43568a4641a7fafc10c7685804f335bdb
 </project>
