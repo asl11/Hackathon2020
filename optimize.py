@@ -1,22 +1,26 @@
 import cvxpy as cp
 import numpy as np
+#needs cvxopt, Mosek
 
-n_paths = 4
-n_people = 15
-n_meetings = 2
-n_rooms =20
+def test_cases():
+    n_paths = 4
+    n_people = 15
+    n_meetings = 2
+    n_rooms =20
 
-E = np.random.randint(0, 2, (n_people, n_meetings))
-S = np.random.randint(0, 2, (n_people, n_rooms))
-D = np.random.randint(0,2,(n_paths, n_rooms, n_rooms))
-c = np.random.randint(0,4,(n_rooms,))
+    E = np.random.randint(0, 2, (n_people, n_meetings))
+    S = np.random.randint(0, 2, (n_people, n_rooms))
+    D = np.random.randint(0,2,(n_paths, n_rooms, n_rooms))
+    c = np.random.randint(0,4,(n_rooms,))
 
-E = np.zeros((n_people, n_meetings))
-E[0,0] = 1
-E[1,0] = 1
-E[2,0] = 1
-S = np.zeros((n_people, n_rooms))
-S[0:n_people, 0:n_people] = np.eye(n_people)
+    E = np.zeros((n_people, n_meetings))
+    E[0,0] = 1
+    E[1,0] = 1
+    E[2,0] = 1
+    S = np.zeros((n_people, n_rooms))
+    S[0:n_people, 0:n_people] = np.eye(n_people)
+
+    return [E, S, D]
 
 def validate_inputs(E, S, D):
     #E - matrix where rows are people, columns are meetings, indicates whether person is in meeting
@@ -116,7 +120,8 @@ def optimize_assignments(E, S, D, c):
 
     meeting_score = np.divide(meeting_score_num, meeting_score_denom)
 
-    return [roomids, meeting_score]
+    return {"rooms": roomids, "scores": meeting_score}
 
+#[E,S,D] = test_cases()
 #print(validate_inputs(E, S, D))
-print(optimize_assignments(E, S, D, c))
+#print(optimize_assignments(E, S, D, c))
