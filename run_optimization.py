@@ -24,10 +24,11 @@ def load_data_old():
     return [person_df, meeting_df, location_df, graph_df, network_G]
 
 def load_data():
-    xls = pd.ExcelFile('HackRiceDataExcel.xlsx')
+
+    xls = pd.ExcelFile('./uploads/test_docs/HackRiceDataExcel.xlsx')
 
     person_df = pd.read_excel(xls, 'PersonTable')
-    person_df = person_df.set_index('PersonID')
+    #person_df = person_df.set_index('PersonID')
     #print(person_df)
 
     meeting_df = pd.read_excel(xls, 'MeetingTable')
@@ -134,7 +135,6 @@ def run():
 
     [person_df, meeting_df, location_df, graph_df, network_G] = load_data()
 
-
     table_vals = [] #{"MeetingID", "MeetingTime", "AssignedRoom", "NumberofAttendees", "Score"}
 
 
@@ -149,26 +149,35 @@ def run():
 
 
     for time in range(time_start, time_end + 1):
-
+        print(time)
         meetids = np.where(times==time)[0]
+        print(meetids)
+        sub_ps = np.asarray(person_df[person_df["MeetingID"].isin(meetids)].index)
 
-        subE = E[:, times == time]
+        if len(meetids) == 0:
+            continue
+        include_idx = np.isin(np.arange(E.shape[0]), sub_ps)
 
-        opt_out = optimize.optimize_assignments(subE, S, D, c)
+        subE1 = E[include_idx, :]
+        subE = subE1[:, times == time]
+        subS = S[include_idx, :]
+
+        opt_out = optimize.optimize_assignments(subE, subS, D, c)
         assignments = opt_out["rooms"]
         scores = opt_out["scores"]
 
-        S_next = opt_out["end_locs"]
-        in_meeting = np.sum(S_next, 1)
-        S_next[in_meeting==0, :] = S_init[in_meeting==0, :]
+        #S_next = opt_out["end_locs"]
+        #in_meeting = np.sum(S_next, 1)
+        #S_small = S_next[include_idx]
+        #S_next[in_meeting==0, :] = S_small[in_meeting==0, :]
 
-        S = S_next
+        #S = S_next
 
         for i in range(len(assignments)):
-            table_row = {"MeetingID": meetids[i], "MeetingTime":str(time)+":00", "AssignedRoom": assignments[i],
-                         "NumberofAttendees": int(np.sum(subE,0)[i]), "Score": round(scores[i], 2)}
+            table_row = {"MeetingID": meeting_df["Meeting Name"][meetids[i]], "MeetingTime":str(time)+":00",
+                         "AssignedRoom": location_df["LocationName"][assignments[i]],
+                         "NumberofAttendees": int(np.sum(subE,0)[i]), "Score": float(round(scores[i], 2))}
             table_vals.append(table_row)
 
     return table_vals
 
-print(run())

@@ -1,12 +1,16 @@
 
 import React from 'react';
 import DTable from './DTable.jsx';
+import ReactLoading from "react-loading";
+
 
 function DisplayTable(props) {
-    console.log(props.data);
     if (props.data !== null && props.data !== undefined) {
-        console.log("hello");
-        return <DTable style={{paddingTop:"50%"}} data={props.data}/>;
+        console.log("here2");
+        return <DTable className={"test"} data={props.data}/>;
+    } else if (props.started){
+        console.log("here3");
+        return <ReactLoading className={"test"} type={"bubbles"}/>
     } else {
         return null;
     }
@@ -18,6 +22,7 @@ class Main extends React.Component {
 
         this.state = {
             data: null,
+            started: false,
         };
 
         this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -25,7 +30,8 @@ class Main extends React.Component {
 
     handleUploadImage(ev) {
         ev.preventDefault();
-
+        console.log("here")
+        this.setState({started:true});
         const data = new FormData();
         data.append('file', this.uploadInput.files[0]);
 
@@ -38,21 +44,23 @@ class Main extends React.Component {
                 console.log(body);
                 this.setState({ data: body });
                 console.log(this.state.data);
+                this.setState({started:false});
             });
         });
+
     }
 
     render() {
         return (
-            <form className="form-control-file" onSubmit={this.handleUploadImage}>
+            <form onSubmit={this.handleUploadImage}>
                 <div>
                     <input className="btn" ref={(ref) => { this.uploadInput = ref; }} type="file" />
                 </div>
                 <br />
-                <div>
-                    <button style={{marginBottom:"10%"}} className="btn btn-primary js-scroll-trigger">Run</button>
+                <div style={{paddingBottom:"5%"}}>
+                    <button className="btn btn-primary js-scroll-trigger">Run</button>
                 </div>
-                <DisplayTable class="table" data={this.state.data}/>
+                <DisplayTable style={{paddingTop:"5%"}} data={this.state.data} started={this.state.started}/>
             </form>
 
 

@@ -10438,7 +10438,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 100rem;
+    min-height: 55rem;
     padding: 15rem 0;
     background-image: url('../assets/img/about.png');
     background-position:center;
@@ -10645,3 +10645,8 @@ body {
   color:#64a19d;
 }
 
+.test {
+  margin-left:48%;
+  padding-bottom:3%;
+
+}

@@ -4,6 +4,11 @@ from flask import Flask, request, session,jsonify
 from werkzeug.utils import secure_filename
 import logging
 import flask_cors
+import sys
+sys.path.append('..')
+
+import run_optimization
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -25,11 +30,11 @@ def fileUpload():
         os.mkdir(target)
     logger.info("welcome to upload`")
     file = request.files['file'] 
-    filename = secure_filename("input.csv")
+    filename = secure_filename("HackRiceDataExcel.xlsx")
     destination="/".join([target, filename])
     file.save(destination)
     session['uploadFilePath']=destination
-    response = jsonify([{"header":"data1", "header2":"data2"}, {"header":"data3", "header2":"data4"}])
+    response = jsonify(run_optimization.run())
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 

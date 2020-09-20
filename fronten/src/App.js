@@ -72,7 +72,7 @@ class App extends Component {
                   <h1 className="mx-auto my-0 text-uppercase">MeetSafe</h1>
                   <h2 className="text-white-50 mx-auto mt-2 mb-5">Dynamic meeting assignment to minimize contact during travel</h2>
                   <a style={{fontStyle : "italic", marginRight:10}} className="btn btn-primary js-scroll-trigger" href="#about">Get Started <FontAwesomeIcon size='xl' style={{marginLeft:10}}icon={faPlay}/></a>
-                  <a className="btn btn-primary js-scroll-trigger" href="https://github.com/asl11">Github</a>
+                  <a className="btn btn-primary js-scroll-trigger" href="https://github.com/asl11/Hackathon2020">Github</a>
               </div>
           </div>
       </header>
@@ -82,20 +82,24 @@ class App extends Component {
     <section id="about" className="resume">
     </section>
 
-    <section style={{backgroundColor:"#F4F7F0"}} id="results">
+    <section style={{backgroundColor:"#BFD2D0"}} id="results">
 
       {/*-----------RESULTS----------------*/}
-      <Container className="imgwrap" fluid>
+      <Container style={{alignItems:"center", alignContent:"center"}} className="imgwrap" fluid>
       <div style={{paddingTop:135}} class="section-title">
         <h2 style={{fontWeight:"bold"}} class="section-title">Run Our Model</h2>
       </div>
-      <p style={{paddingBottom : 75}}>Upload a csv file of meeting schedules and press the run button!</p>
-          <Main className="btn btn-primary js-scroll-trigger"/>
+           <p style={{paddingBottom : 75}}>
+               Upload a xlsx file of meeting schedules and press the run button!
+             We'll give you a multiplier <br/> of how many more interactions are created by each
+                meeting and the optimal room assignment for the meetings.</p>
+
       </Container>
+      <Main/>
     </section>
 
 
-      <footer className="footer small text-center"><div className="container">Made by Alex, Chris, Matthew, and Anthony with React/Flask</div></footer>
+      <footer style={{backgroundColor:"#BFD2D0"}} className="footer small text-center"><div className="container">Made by Alex, Chris, Matthew, and Anthony with React/Flask</div></footer>
 
     </div>
   );
