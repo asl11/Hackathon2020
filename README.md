@@ -1,5 +1,5 @@
 # Hackathon2020
-![OurLogo](https://github.com/asl11/Hackathon2020/blob/master/logo.png?raw=true)
+![OurLogo](https://github.com/asl11/Hackathon2020/blob/master/tek-4.png?raw=true)
 
 MeetSafe is a Web Application designed to facilitate safe and responsible returns back to in person meetings. 
 
