@@ -20,7 +20,7 @@ def test_cases():
     S = np.zeros((n_people, n_rooms))
     S[0:n_people, 0:n_people] = np.eye(n_people)
 
-    return [E, S, D]
+    return [E, S, D, c]
 
 def validate_inputs(E, S, D):
     #E - matrix where rows are people, columns are meetings, indicates whether person is in meeting
@@ -113,6 +113,7 @@ def optimize_assignments(E, S, D, c):
     problem.solve()
 
     roomids = np.where(m.value >= .9)[1].tolist()
+    print(m.value)
 
     meeting_score_denom = np.sum(E, 0)
     meeting_score_num = np.matmul((np.matmul(E.T, p.value)), np.square(x.value))
@@ -120,8 +121,10 @@ def optimize_assignments(E, S, D, c):
 
     meeting_score = np.divide(meeting_score_num, meeting_score_denom)
 
-    return {"rooms": roomids, "scores": meeting_score}
+    end_locs = np.matmul(E, m)
 
-#[E,S,D] = test_cases()
+    return {"rooms": roomids, "scores": meeting_score, "end_locs": end_locs}
+
+#[E,S,D,c] = test_cases()
 #print(validate_inputs(E, S, D))
 #print(optimize_assignments(E, S, D, c))

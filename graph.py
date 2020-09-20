@@ -1,6 +1,7 @@
 import networkx as nx
 from pathlib import Path
 import pandas as pd
+import datetime
 import numpy as np
 import scipy as sp
 
@@ -8,7 +9,7 @@ person_df = pd.read_csv('PersonTable.csv', index_col='PersonID')
 #print(person_table['PersonID'])
 
 meeting_df = pd.read_csv('MeetingTable.csv', index_col='MeetingID')
-#print(meeting_table)
+#print(meeting_df)
 
 location_df = pd.read_csv('LocationTable.csv', index_col='Location ID')
 
@@ -39,7 +40,7 @@ def create_location_network():
 
     adjusted_location_df = location_df.reset_index()
 
-    print(adjusted_location_df)
+    #print(adjusted_location_df)
 
     for location1 in adjusted_location_df['Location ID']:
         for location2 in adjusted_location_df['Location ID']:
@@ -94,10 +95,26 @@ def create_path_adjacency_matrix():
     #for location in location_table.index:
         # For each edge, check
 
+def load_capacities():
+
+    cap = location_df["Capacity"].to_numpy()
+    return cap
+
+def load_times():
+
+    times_raw = meeting_df["Meeting Time"].to_numpy()
+    times = []
+    for time in times_raw:
+        datetime_time = datetime.datetime.strptime(time, "%I:%M")
+        times.append(datetime_time.hour)
+    return times
+
 #print(create_person_meeting_matrix())
 #print(create_person_startroom_matrix())
 #print(create_location_network())
-print(create_path_adjacency_matrix())
+#print(create_path_adjacency_matrix())
+
+
 
 #print(create_person_startroom_matrix())
 
