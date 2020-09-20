@@ -17,20 +17,20 @@ run api.py and app.js through two terminal windows, visit localhost:3000, and op
 
 ## Data Inputs:
 
-PersonTable contains information about each person in the organization
+PersonTable contains information about each person in the organization.
 
     PersonID - Numeric Identifier of Person
     Name - Name of Person
     MeetingID - Meeting that each person is assigned to
     PersonalRoomID - Room that person starts in
 
-MeetingTable contains information about each meeting
+MeetingTable contains information about each meeting.
 
     MeetingID - Numeric Identifier of each Meeting
     MeetingName - Name of Meeting
     MeetingTime - Start time of a meeting
 
-LocationTable contains information about each location in the organization
+LocationTable contains information about each location in the organization.
 
     LocationID - Numeric Identifier of each meeting
     LocationName - Name of location
