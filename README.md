@@ -17,7 +17,8 @@ by room name, or interaction score, so that companies can decide which meetings 
 
 Our backend is built in Flask at api/api.py. It calls functions in optimize.py/run_optimization.py that handles 
 the model optimization. Our frontend is built in React, the main file being fronten/src/app.js. To use our site, 
-run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings!
+run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings! You'll need
+to install node.js / its packages, as well as some python packages.
 
 ## Data Inputs:
 
