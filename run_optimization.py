@@ -4,7 +4,7 @@ import networkx as nx
 import optimize
 import datetime
 
-def load_data():
+def load_data_old():
 
     person_df = pd.read_csv('PersonTable.csv', index_col='PersonID')
     # print(person_table['PersonID'])
@@ -12,13 +12,35 @@ def load_data():
     meeting_df = pd.read_csv('MeetingTable.csv', index_col='MeetingID')
     # print(meeting_df)
 
-    location_df = pd.read_csv('LocationTable.csv', index_col='Location ID')
+    location_df = pd.read_csv('LocationTable.csv', index_col='LocationID')
 
     graph_df = pd.read_csv('NetworkTable.csv')
     # print(graph_df)
 
     graph = nx.MultiGraph()
     # no_index_location_df = location_df.reset_index()
+    network_G = nx.from_pandas_edgelist(graph_df, 'Node 1', 'Node 2', edge_attr='Edge_Weight', create_using=graph)
+
+    return [person_df, meeting_df, location_df, graph_df, network_G]
+
+def load_data():
+    xls = pd.ExcelFile('HackRiceDataExcel.xlsx')
+
+    person_df = pd.read_excel(xls, 'PersonTable')
+    person_df = person_df.set_index('PersonID')
+    #print(person_df)
+
+    meeting_df = pd.read_excel(xls, 'MeetingTable')
+    meeting_df = meeting_df.set_index('MeetingID')
+
+    location_df = pd.read_excel(xls, 'LocationTable')
+    location_df = location_df.set_index('LocationID')
+
+    graph_df = pd.read_excel(xls, 'NetworkTable')
+    #print(graph_df)
+
+    graph = nx.MultiGraph()
+    #no_index_location_df = location_df.reset_index()
     network_G = nx.from_pandas_edgelist(graph_df, 'Node 1', 'Node 2', edge_attr='Edge_Weight', create_using=graph)
 
     return [person_df, meeting_df, location_df, graph_df, network_G]
@@ -43,8 +65,8 @@ def create_location_network(location_df, graph_df, network_G):
 
     #print(adjusted_location_df)
 
-    for location1 in adjusted_location_df['Location ID']:
-        for location2 in adjusted_location_df['Location ID']:
+    for location1 in adjusted_location_df['LocationID']:
+        for location2 in adjusted_location_df['LocationID']:
             nodes_shortest_path = nx.dijkstra_path(network_G, location1, #Find shortest path for each name
             location2)
             shortest_path_length = nx.shortest_path_length(network_G, location1, location2)
@@ -61,7 +83,7 @@ def create_path_adjacency_matrix(location_df, graph_df, network_G):
     n = len(location_df)
     #matrix_3d = [[[0 for _ in range(n)] for _ in range(n)] for _ in range(n)]
     matrix_3d = np.zeros((n, n, n))
-    for node in location_df.reset_index()['Location ID']:
+    for node in location_df.reset_index()['LocationID']:
         for edge in shortest_path_graph.iterrows():
             source = edge[1]['Source']
             target = edge[1]['Target']
@@ -74,7 +96,6 @@ def create_path_adjacency_matrix(location_df, graph_df, network_G):
 def create_person_startroom_matrix(person_df, location_df):
 
     p = len(person_df)
-    print(person_df)
     l = len(location_df)
     Srm = np.zeros((p, l))
     for i in range(p):
@@ -106,8 +127,7 @@ def load_times(meeting_df):
     times_raw = meeting_df["Meeting Time"].to_numpy()
     times = []
     for time in times_raw:
-        datetime_time = datetime.datetime.strptime(time, "%I:%M")
-        times.append(datetime_time.hour)
+        times.append(time.hour)
     return times
 
 def run():
@@ -123,29 +143,32 @@ def run():
     S = S_init
     E = create_person_meeting_matrix(person_df, meeting_df)
     c = load_capacities(location_df)
-    print(c)
-    times = load_times(meeting_df)
+    times = np.asarray(load_times(meeting_df))
     time_start = min(times)
     time_end = max(times)
 
 
     for time in range(time_start, time_end + 1):
 
-        opt_out = optimize.optimize_assignments(E, S, D, c)
+        meetids = np.where(times==time)[0]
+
+        subE = E[:, times == time]
+
+        opt_out = optimize.optimize_assignments(subE, S, D, c)
         assignments = opt_out["rooms"]
         scores = opt_out["scores"]
 
-
         S_next = opt_out["end_locs"]
-        in_meeting = np.sum(S_next, 0)
+        in_meeting = np.sum(S_next, 1)
         S_next[in_meeting==0, :] = S_init[in_meeting==0, :]
 
         S = S_next
 
         for i in range(len(assignments)):
-            table_row = {"MeetingID": "", "AssignedRoom": assignments[i], "NumberofAttendees": "", "Score": scores[i]}
+            table_row = {"MeetingID": meetids[i], "MeetingTime":str(time)+":00", "AssignedRoom": assignments[i],
+                         "NumberofAttendees": int(np.sum(subE,0)[i]), "Score": round(scores[i], 2)}
             table_vals.append(table_row)
 
-    return table_row
+    return table_vals
 
-run()
+print(run())

@@ -113,15 +113,14 @@ def optimize_assignments(E, S, D, c):
     problem.solve()
 
     roomids = np.where(m.value >= .9)[1].tolist()
-    print(m.value)
 
     meeting_score_denom = np.sum(E, 0)
     meeting_score_num = np.matmul((np.matmul(E.T, p.value)), np.square(x.value))
     meeting_score_denom[meeting_score_num==0] = 1
 
-    meeting_score = np.divide(meeting_score_num, meeting_score_denom)
+    meeting_score = np.sqrt(np.divide(meeting_score_num, meeting_score_denom))
 
-    end_locs = np.matmul(E, m)
+    end_locs = np.matmul(E, m.value)
 
     return {"rooms": roomids, "scores": meeting_score, "end_locs": end_locs}
 
