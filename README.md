@@ -9,12 +9,13 @@ Then, by developing a graph to model the paths within the building or campus, ou
 to rooms such that the amount of contact when travelling to meetings is minimized. Our model also can filter
 by room name, or interaction score, so that companies can decide which meetings might be best to move online.
 
-The Code:
+## The Code:
+
 Our backend is built in Flask at api/api.py. It calls functions in optimize.py/run_optimization.py that handles 
 the model optimization. Our frontend is built in React, the main file being fronten/src/app.js. To use our site, 
 run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings!
 
-Data Inputs:
+## Data Inputs:
 
 PersonTable contains information about each person in the organization
     PersonID - Numeric Identifier of Person
