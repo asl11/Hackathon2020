@@ -14,5 +14,26 @@ Our backend is built in Flask at api/api.py. It calls functions in optimize.py/r
 the model optimization. Our frontend is built in React, the main file being fronten/src/app.js. To use our site, 
 run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings!
 
+Data Inputs:
 
+PersonTable contains information about each person in the organization
+    PersonID - Numeric Identifier of Person
+    Name - Name of Person
+    MeetingID - Meeting that each person is assigned to
+    PersonalRoomID - Room that person starts in
+
+MeetingTable contains information about each meeting
+    MeetingID - Numeric Identifier of each Meeting
+    MeetingName - Name of Meeting
+    MeetingTime - Start time of a meeting
+
+LocationTable contains information about each location in the organization
+    LocationID - Numeric Identifier of each meeting
+    LocationName - Name of location
+    Capacity - COVID safe capacity of each location
+
+NetworkTable contains all locations that have an edge between them. We use this to create an undirected graph.
+    Node 1 - The source node
+    Node 2 - The target node
+    Edge_Weight - The weight of the edge between Node 1 and Node 2
 
