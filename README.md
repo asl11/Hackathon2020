@@ -20,6 +20,8 @@ the model optimization. Our frontend is built in React, the main file being fron
 run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings! You'll need
 to install node.js / its packages, as well as some python packages.
 
+The project uses convex optimization techniques to minimize the squared number of individuals who cross a path while traveling between rooms. We optimize with respect to the room in which a meeting is assigned. Our website takes an input dataset which consists of a network graph describing the locations of the meeting rooms, the routes between them, and room capacities, a table of people in the organizations and their home-room, and a table of meetings to be assigned to rooms, including their attendees. We then compute the shortest path between every pair of locations in the network, then format a minimization problem, which assigns each meeting to a room, respecting meeting capacities, and minimizes congestion along routes between locations. The project then outputs the room assignments for each meeting and a score identifying how many interactions originate from a meeting, which can be used to identify high-consequence meetings to move online.
+
 ## Data Inputs:
 
 PersonTable contains information about each person in the organization.
