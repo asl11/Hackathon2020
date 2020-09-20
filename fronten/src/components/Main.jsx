@@ -1,12 +1,23 @@
 
 import React from 'react';
+import DTable from './DTable.jsx';
 
+function DisplayTable(props) {
+    console.log(props.data);
+    if (props.data !== null && props.data !== undefined) {
+        console.log("hello");
+        return <DTable style={{paddingTop:"50%"}} data={props.data}/>;
+    } else {
+        return null;
+    }
+
+}
 class Main extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            imageURL: '',
+            data: null,
         };
 
         this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -17,7 +28,7 @@ class Main extends React.Component {
 
         const data = new FormData();
         data.append('file', this.uploadInput.files[0]);
-        data.append('filename', this.fileName.value);
+
 
         fetch('http://localhost:5000/upload', {
             method: 'POST',
@@ -25,7 +36,8 @@ class Main extends React.Component {
         }).then((response) => {
             response.json().then((body) => {
                 console.log(body);
-                this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+                this.setState({ data: body });
+                console.log(this.state.data);
             });
         });
     }
@@ -38,8 +50,9 @@ class Main extends React.Component {
                 </div>
                 <br />
                 <div>
-                    <button className="btn btn-primary js-scroll-trigger">Run</button>
+                    <button style={{marginBottom:"10%"}} className="btn btn-primary js-scroll-trigger">Run</button>
                 </div>
+                <DisplayTable class="table" data={this.state.data}/>
             </form>
 
 
