@@ -1,5 +1,9 @@
 # Hackathon2020
-![OurLogo](https://github.com/asl11/Hackathon2020/blob/master/tek-4.png?raw=true)
+![Page1](https://github.com/asl11/Hackathon2020/blob/master/websitePreview/1.png?raw=true)
+![Page2](https://github.com/asl11/Hackathon2020/blob/master/websitePreview/2.png?raw=true)
+![Page3](https://github.com/asl11/Hackathon2020/blob/master/websitePreview/3.png?raw=true)
+![Page4](https://github.com/asl11/Hackathon2020/blob/master/websitePreview/4.png?raw=true)
+
 
 MeetSafe is a Web Application designed to facilitate safe and responsible returns back to in person meetings. 
 
@@ -13,7 +17,10 @@ by room name, or interaction score, so that companies can decide which meetings 
 
 Our backend is built in Flask at api/api.py. It calls functions in optimize.py/run_optimization.py that handles 
 the model optimization. Our frontend is built in React, the main file being fronten/src/app.js. To use our site, 
-run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings!
+run api.py and app.js through two terminal windows, visit localhost:3000, and optimize your meetings! You'll need
+to install node.js / its packages, as well as some python packages.
+
+The project uses convex optimization techniques to minimize the squared number of individuals who cross a path while traveling between rooms. We optimize with respect to the room in which a meeting is assigned. Our website takes an input dataset which consists of a network graph describing the locations of the meeting rooms, the routes between them, and room capacities, a table of people in the organizations and their home-room, and a table of meetings to be assigned to rooms, including their attendees. We then compute the shortest path between every pair of locations in the network, then format a minimization problem, which assigns each meeting to a room, respecting meeting capacities, and minimizes congestion along routes between locations. The project then outputs the room assignments for each meeting and a score identifying how many interactions originate from a meeting, which can be used to identify high-consequence meetings to move online.
 
 ## Data Inputs:
 
